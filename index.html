@@ -6,62 +6,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Roadster - kocsirtamas.hu</title>
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: monospace, monospace;
-  }
-  img {
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: monospace, monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#main-image {
+  display: block;
+  margin: 20px auto;
+  width: 50%;
+  max-width: 1920px;
+  height: auto;
+}
+
+.filter-container {
+  width: 50%;
+  max-width: 1920px;
+  margin: 10px auto;
+  text-align: center;
+}
+.filter-container label {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.table-container {
+  width: 50%;
+  max-width: 1920px;
+  min-width: 768px;
+  margin: 20px auto;
+}
+
+/* table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff7e6;
+  /* let browser auto-layout by default */
+  table-layout: auto;
+}
+colgroup col:first-child {
+  width: auto;
+}
+colgroup col:last-child {
+  width: auto;
+}
+td {
+  padding: 10px;
+  vertical-align: top;
+  border: 1px solid #ccc;
+}
+table td:nth-child(2) {
+  word-break: break-all;
+}
+table td:nth-child(3),
+table td:nth-child(4) {
+  white-space: nowrap;
+  word-break: normal;
+  hyphens: none;
+  min-width: max-content;
+}
+table img {
+  max-width: 100%; /* can shrink if the cell is narrower */
+  min-width: 100px;
+  height: auto;
+  display: block;
+}
+
+/* ===== MOBILE OVERRIDES ===== */
+@media screen and (max-width: 768px) {
+  /* make everything wider on phone */
+  #main-image,
+  .filter-container {
     width: 50%;
-    max-width: 1920px;
-    height: auto;
-    display: flex;
   }
-  /* Table container - wider max width */
   .table-container {
-    width: 50%;
-    max-width: 1920px;
-  }
-  /* Table fills container */
-  table {
     width: 100%;
-    border-collapse: collapse;
-    background-color: #fff7e6;
+	min-width: 0px;
+    padding: 0 10px;
+    /* ensure no horizontal scrollbar */
+    overflow-x: hidden;
   }
-  /* Columns: left minimal for images, right flexible */
-  colgroup col:first-child {
-    width: 1px; /* minimal width, fits images */
+
+  td {
+    /* break anywhere so cells never force width */
+    word-break: break-all;
   }
-  colgroup col:nth-child(2) {
-    width: auto; /* Description column */
-  }
-  colgroup col:nth-child(3) {
-    width: 120px; /* Category column */
-  }
-  colgroup col:last-child {
-    width: 100px; /* State column */
-  }
-  th, td {
-    padding: 10px;
-    vertical-align: top;
-    border: 1px solid #ccc;
-  }
-  /* Thumbnails inside table */
-  table img {
-    width: auto; /* adjust thumbnail size here */
-    height: auto;
-    display: block;
-  }
+}
+
 </style>
 </head>
 <body>
   <img id="main-image" src="452.jpg" alt="Smart Roadster" />
-  <div>
+  <div class="filter-container">
     <label><input type="checkbox" class="category-filter" value="all" checked>All categories</label>
     <label><input type="checkbox" class="category-filter" value="lights">Lights</label>
     <label><input type="checkbox" class="category-filter" value="engine">Engine</label>
@@ -72,7 +115,7 @@
     <label><input type="checkbox" class="category-filter" value="screws">Screws</label>
     <label><input type="checkbox" class="category-filter" value="other">Other</label>
   </div>
-  <div>
+  <div class="filter-container">
     <label><input type="checkbox" class="state-filter" value="all" checked>All states</label>
     <label><input type="checkbox" class="state-filter" value="Planned">Planned</label>
     <label><input type="checkbox" class="state-filter" value="Installed">Installed</label>
@@ -184,9 +227,9 @@
         <tr>
           <td>
             <a href="big/led-front-lights1.jpg"><img src="small/led-front-lights1.jpg"></a>
-            <br>
+            <p>
             <a href="big/led-front-lights2.jpg"><img src="small/led-front-lights2.jpg"></a>
-            <br>
+            <p>
             <a href="big/led-front-lights3.jpg"><img src="small/led-front-lights3.jpg"></a>
           </td>
           <td>
@@ -371,11 +414,11 @@
             <b>Oil filter with adapter and neodymium magnets (glued with epoxy)</b>
             <p>
             <a href="https://www.dl-racing.com/Oelfilter-Umbau-Adapter-fuer-Smart-450-452">https://www.dl-racing.com/Oelfilter-Umbau-Adapter-fuer-Smart-450-452</a>
-            <br>
+            <p>
             <a href="https://filterabc.hu/MANN_FILTER_W7053">https://filterabc.hu/MANN_FILTER_W7053</a>
-            <br>
+            <p>
             <a href="https://orodian.hu/termek/neodimium-magnes-teglatest-26x7x2-mm-n38uh">https://orodian.hu/termek/neodimium-magnes-teglatest-26x7x2-mm-n38uh</a>
-            <br>
+            <p>
             <a href="https://evilution.co.uk/mod/oil-filter-magnets.htm">https://evilution.co.uk/mod/oil-filter-magnets.htm</a>
           </td>
           <td>Oil</td>
@@ -424,7 +467,7 @@
             <b>Stainless steel T20 torx screws with washers</b>
             <p>
             <a href="https://www.accu.co.uk/plastite-30-hexalobular-torx-pan-head-screws/371119-SHP30-5-30-A2-BL">https://www.accu.co.uk/plastite-30-hexalobular-torx-pan-head-screws/371119-SHP30-5-30-A2-BL</a>
-            <br>
+            <p>
             <a href="https://www.accu.co.uk/metric-flat-washers/172875-HDW-M5-A2-BL">https://www.accu.co.uk/metric-flat-washers/172875-HDW-M5-A2-BL</a>
           </td>
           <td>Screws</td>
@@ -460,9 +503,9 @@
             <b>Fuel rubber and cap seal</b>
             <p>
             <a href="https://www.smartmods.co.uk/shop/product/fuel-rubber">https://www.smartmods.co.uk/shop/product/fuel-rubber</a>
-            <br>
+            <p>
             <a href="https://www.smartmods.co.uk/shop/product/fuel-cap-seal">https://www.smartmods.co.uk/shop/product/fuel-cap-seal</a>
-            <br>
+            <p>
             <a href="https://www.aliexpress.com/item/1005008223076354.html">https://www.aliexpress.com/item/1005008223076354.html</a>
           </td>
           <td>Other</td>
@@ -504,15 +547,15 @@
             <b>Alu interior set</b>
             <p>
             <a href="https://www.rs-parts.com/produkt/alu-interieur-set-mit-schrauben-smart-roadster">https://www.rs-parts.com/produkt/alu-interieur-set-mit-schrauben-smart-roadster</a>
-            <br>
+            <p>
             <a href="https://www.rs-parts.com/produkt/luftungskugeln-satz-alu-massiv-smart-roadster">https://www.rs-parts.com/produkt/luftungskugeln-satz-alu-massiv-smart-roadster</a>
-            <br>
+            <p>
             <a href="https://www.rs-parts.com/produkt/ring-fur-sitzheizung-klimaanlage-heckscheibenheizung-ect-smart-roadster">https://www.rs-parts.com/produkt/ring-fur-sitzheizung-klimaanlage-heckscheibenheizung-ect-smart-roadster</a>
-            <br>
+            <p>
             <a href="https://www.rs-parts.com/produkt/rs-handbremshebel-smart-roadster-452-aus-alu-mit-ledermanschette">https://www.rs-parts.com/produkt/rs-handbremshebel-smart-roadster-452-aus-alu-mit-ledermanschette</a>
-            <br>
+            <p>
             <a href="https://www.rs-parts.com/produkt/alu-blenden-satz-fur-turinnengriffe-typ-plan-smart-roadster">https://www.rs-parts.com/produkt/alu-blenden-satz-fur-turinnengriffe-typ-plan-smart-roadster</a>
-            <br>
+            <p>
             <a href="https://www.rs-parts.com/produkt/alu-zundschlossrahmen-smart-roadster-schwarz-silber-geschliffen">https://www.rs-parts.com/produkt/alu-zundschlossrahmen-smart-roadster-schwarz-silber-geschliffen</a>
           </td>
           <td>Interior</td>
@@ -573,7 +616,7 @@
             <b>New soft top</b>
             <p>
             <a href="https://shop.car-layers.com/collections/smart-roadster">https://shop.car-layers.com/collections/smart-roadster</a>
-            <br>
+            <p>
             <a href="https://dfautokarpit.hu">https://dfautokarpit.hu</a>
           </td>
           <td>Other</td>
